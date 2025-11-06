@@ -16,18 +16,3 @@ This project is designed to understand the fundamentals of **HTTP servers**, **n
 
 ---
 
-## 🧠 Architecture Diagrams
-
-### 🔹 HTTP Request Flow
-
-```mermaid
-flowchart TD
-    A[Client Browser] -->|Sends HTTP Request| B[TcpListener on 127.0.0.1:7878]
-    B -->|Accepts incoming connection| C[ThreadPool]
-    C -->|Assigns worker thread| D[handle_connection()]
-    D --> E{Route check}
-    E -->|"/"| F[Return 200 OK + "Hello, World"]
-    E -->|Other routes| G[Return 404 Not Found]
-    F --> H[Write response to stream]
-    G --> H
-    H --> I[Flush stream and close connection]
